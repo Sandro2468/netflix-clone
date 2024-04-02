@@ -1,10 +1,13 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
+import SearchResults from "@/components/SearchResults";
 
-const SearchPage = () => {
+const SearchPage = ({ params }: { params: { query: string } }) => {
+  const query = params.query;
+
   return (
     <>
       <Navbar />
+      <SearchResults query={query} />
     </>
   );
 };
