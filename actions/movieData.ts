@@ -19,6 +19,4 @@ export const fetchGenreMovies = async () => {
       return genres
     }
 
-    export const movieDetails = async (id: number) => {
-        
-    }
+  

@@ -3,7 +3,7 @@ import { InfoOutlined, PlayCircleOutlineOutlined } from "@mui/icons-material";
 import { Movie } from "@/lib/types";
 
 const HeroCard = ({ trendingMovie }: { trendingMovie: Movie }) => {
-  console.log(trendingMovie);
+  // console.log(trendingMovie);
   return (
     <div className="hero">
       <div className="hero-bg">
