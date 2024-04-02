@@ -23,7 +23,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
         />
         <div className="border"></div>
       </div>
-      {showModal && <Modal movie={movie} closeModal={closeModal}/>}
+      {showModal && <Modal movie={movie} closeModal={closeModal} />}
     </>
   );
 };

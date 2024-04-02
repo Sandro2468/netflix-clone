@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Movie, Video } from "@/lib/types";
+import { Genre, Movie, Video } from "@/lib/types";
 import { AddCircle, CancelRounded } from "@mui/icons-material";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 
 const Modal = ({ movie, closeModal }: Props) => {
   const [video, setVideo] = useState("");
+  const [genres, setGenres] = useState<Genre[]>([]);
   const options = {
     method: "GET",
     headers: {
@@ -26,12 +27,17 @@ const Modal = ({ movie, closeModal }: Props) => {
       );
 
       const data = await res.json();
+      console.log("data", data);
 
       if (data?.videos) {
         const index = data.videos.results.findIndex(
           (video: Video) => video.type === "Trailer"
         );
         setVideo(data.videos.results[index].key);
+      }
+
+      if (data?.genres) {
+        setGenres(data.genres);
       }
     } catch (err) {
       console.log("Error fetching movie details", err);
@@ -51,7 +57,7 @@ const Modal = ({ movie, closeModal }: Props) => {
       </button>
 
       <iframe
-        src={`https://www.youtube.com/embed/${video}`}
+        src={`https://www.youtube.com/embed/${video}?autoplay=1&mute=1&loop=1`}
         className="modal-video"
         loading="lazy"
         allowFullScreen
@@ -79,6 +85,12 @@ const Modal = ({ movie, closeModal }: Props) => {
         <div className="flex gap-2">
           <p className="text-base-bold">Rating:</p>
           <p className="text-base-light">{movie?.vote_average}</p>
+        </div>
+        <div className="flex gap-2">
+          <p className="text-base-bold">Genres:</p>
+          <p className="text-base-light">
+            {genres.map((genre) => genre.name).join(", ")}
+          </p>
         </div>
       </div>
     </div>
