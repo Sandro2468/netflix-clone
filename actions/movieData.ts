@@ -26,3 +26,11 @@ export const searchMovies = async (query: string) => {
 
   return searchedMovies;
 };
+
+export const fetchMovieDetails = async (id: number) => {
+  const movieDetails = await getApiResponse(
+    `/movie/${id}?append_to_response=videos`
+  );
+
+  return movieDetails;
+};
